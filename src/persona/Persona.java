@@ -8,6 +8,7 @@ public class Persona {
     private String apellido;
     private String email;
     private ArrayList<Direccion> direcciones;
+    private ArrayList<CuentaBancaria> cuentas;
 
     public Persona(String email, String apellido, String nombre, Long id) {
         this.id = id;
@@ -15,6 +16,7 @@ public class Persona {
         this.nombre = nombre;
         this.email = email;
         this.direcciones = new ArrayList<>();
+        this.cuentas = new ArrayList<>();
     }
 
     public Long getId() {
@@ -57,6 +59,25 @@ public class Persona {
     public void verDirecciones() {
         for (Direccion direccion : this.direcciones) {
             System.out.println(direccion);
+        }
+    }
+
+    public void agregarCuenta(CuentaBancaria c){
+        this.cuentas.add(c);
+    }
+
+    public void verCuentas(){
+        for(CuentaBancaria c : this.cuentas){
+            System.out.println(c);
+        }
+    }
+
+    public void retirardinero(long idCuenta, long saldo){
+        for(int i=0; i<this.cuentas.size(); i++){
+            if(this.cuentas.get(i).getNumero() == idCuenta){
+                this.cuentas.get(i).retiro(saldo);
+                return;
+            }
         }
     }
 }
